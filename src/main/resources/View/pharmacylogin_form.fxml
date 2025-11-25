@@ -10,12 +10,12 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PharmacyLoginformController">
    <children>
-      <Button layoutX="168.0" layoutY="350.0" mnemonicParsing="false" text="Customers" textFill="#1a1a1b">
+      <Button fx:id="btnCustomers" layoutX="168.0" layoutY="350.0" mnemonicParsing="false" onAction="#btnCustomerOnAction" text="Customers" textFill="#1a1a1b">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="312.0" layoutY="350.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" text="Admin">
+      <Button fx:id="btnAdmin" layoutX="312.0" layoutY="350.0" mnemonicParsing="false" onAction="#btnAdminOnAction" prefHeight="25.0" prefWidth="73.0" text="Admin">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
