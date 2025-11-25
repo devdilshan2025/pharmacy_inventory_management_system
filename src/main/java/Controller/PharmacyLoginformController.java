@@ -12,6 +12,8 @@ import java.io.IOException;
 
 public class PharmacyLoginformController {
 
+    Stage stage = new Stage();
+
     @FXML
     private Button btnAdmin;
 
@@ -24,10 +26,16 @@ public class PharmacyLoginformController {
     @FXML
     void btnAdminOnAction(ActionEvent event) {
 
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/View/AdminLogin_form.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.show();
+
     }
 
 
-    Stage stage = new Stage();
     @FXML
     void btnCustomerOnAction(ActionEvent event) {
 
