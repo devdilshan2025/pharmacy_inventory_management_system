@@ -10,14 +10,14 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PharmacyLoginformController">
    <children>
-      <Button fx:id="btnCustomers" layoutX="168.0" layoutY="350.0" mnemonicParsing="false" onAction="#btnCustomerOnAction" text="Customers" textFill="#1a1a1b">
+      <Button fx:id="btnCustomers" layoutX="168.0" layoutY="350.0" mnemonicParsing="false" onAction="#btnCustomerOnAction" style="-fx-background-color: #87CEEB;" text="Customers" textFill="#1a1a1b">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <Button fx:id="btnAdmin" layoutX="312.0" layoutY="350.0" mnemonicParsing="false" onAction="#btnAdminOnAction" prefHeight="25.0" prefWidth="73.0" text="Admin">
+      <Button fx:id="btnAdmin" layoutX="312.0" layoutY="350.0" mnemonicParsing="false" onAction="#btnAdminOnAction" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #87CEEB;" text="Admin">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="13.0" />
          </font>
       </Button>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="SKYBLUE" height="50.0" layoutX="23.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="554.0" />
@@ -28,7 +28,7 @@
       </Label>
       <ImageView fx:id="image1" fitHeight="248.0" fitWidth="327.0" layoutX="130.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../image/11599.jpg" />
+            <Image url="@../image/img1.jpg" />
          </image></ImageView>
    </children>
 </AnchorPane>

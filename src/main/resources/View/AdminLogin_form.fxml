@@ -20,6 +20,10 @@
       <Label layoutX="211.0" layoutY="208.0" text="Password" />
       <TextField fx:id="txtUserName" layoutX="276.0" layoutY="152.0" />
       <TextField fx:id="txtPassword" layoutX="276.0" layoutY="204.0" />
-      <Button fx:id="btnLogin" layoutX="274.0" layoutY="276.0" mnemonicParsing="false" onAction="#btnLoginOnAction" text="Login" />
+      <Button fx:id="btnLogin" layoutX="274.0" layoutY="276.0" mnemonicParsing="false" onAction="#btnLoginOnAction" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #87CEEB;" text="Login">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
