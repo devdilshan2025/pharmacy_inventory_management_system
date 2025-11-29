@@ -15,7 +15,7 @@ public class StockInfo {
     private String itemId;
     private String name;
     private  String brand;
-    private Date expDate;
+    private LocalDate expDate;
     private int quantity;
     private double price;
 }

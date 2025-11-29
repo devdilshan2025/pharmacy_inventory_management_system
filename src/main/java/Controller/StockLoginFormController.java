@@ -1,5 +1,7 @@
 package Controller;
 
+import com.jfoenix.controls.JFXButton;
+import com.mysql.cj.x.protobuf.MysqlxCrud;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +16,7 @@ import model.dto.StockInfo;
 
 import java.net.URL;
 import java.sql.*;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.time.LocalDate;
 
@@ -29,6 +32,9 @@ public class StockLoginFormController implements Initializable {
 
     @FXML
     private Button btnUpdate;
+
+    @FXML
+    private JFXButton btnLoadTable;
 
     @FXML
     private TableColumn<?, ?> colBrand;
@@ -72,6 +78,31 @@ public class StockLoginFormController implements Initializable {
     @FXML
     void btnAddOnAction(ActionEvent event) {
 
+        String itemId = txtItemId.getText();
+        String name = txtname.getText();
+        String brand = txtbrand.getText();
+        LocalDate expDate = LocalDate.parse(txtExp.getText());
+        int quantity = Integer.parseInt(txtQuntity.getText());
+        double price = Double.parseDouble(txtPrice.getText());
+
+        try {
+            Connection  connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Pharmacy", "root", "1234");
+            String sql = "INSERT INTO item VALUES(?,?,?,?,?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setObject(1,itemId);
+            preparedStatement.setObject(2,name);
+            preparedStatement.setObject(3,brand);
+            preparedStatement.setObject(4,expDate);
+            preparedStatement.setObject(5,quantity);
+            preparedStatement.setObject(6,price);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
     @FXML
@@ -84,8 +115,8 @@ public class StockLoginFormController implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    @FXML
+    void btnLoadTableOnAction(ActionEvent event) {
 
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Pharmacy", "root", "1234");
@@ -98,7 +129,7 @@ public class StockLoginFormController implements Initializable {
                         resultSet.getString("ItemCode"),
                         resultSet.getString("Name"),
                         resultSet.getString("Brand"),
-                        resultSet.getDate("ExpeDate"),
+                        resultSet.getDate("ExpeDate").toLocalDate(),
                         resultSet.getInt("Quantity"),
                         resultSet.getDouble("UnitPrice")
                 );
@@ -109,6 +140,12 @@ public class StockLoginFormController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
 
         colId.setCellValueFactory(new PropertyValueFactory<>("itemId"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));

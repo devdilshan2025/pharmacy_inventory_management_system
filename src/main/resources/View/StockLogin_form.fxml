@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="748.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StockLoginFormController">
+<AnchorPane prefHeight="400.0" prefWidth="748.0" style="-fx-background-color: #FFFDD0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StockLoginFormController">
    <children>
       <TableView fx:id="tblStock" layoutX="20.0" layoutY="49.0" prefHeight="277.0" prefWidth="448.0">
         <columns>
@@ -41,17 +42,22 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnUpdate" layoutX="595.0" layoutY="300.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" style="-fx-background-color: #FFFFE0;" text="Update">
+      <Button fx:id="btnUpdate" layoutX="595.0" layoutY="300.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" style="-fx-background-color: #FFEA00;" text="Update">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnDelete" layoutX="677.0" layoutY="300.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #FFCCCB;" text="Delete">
+      <Button fx:id="btnDelete" layoutX="677.0" layoutY="300.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #FF2E2E;" text="Delete">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
       <Label layoutX="509.0" layoutY="49.0" text="Item ID" />
       <TextField fx:id="txtItemId" layoutX="584.0" layoutY="45.0" />
+      <JFXButton fx:id="btnLoadTable" layoutX="207.0" layoutY="340.0" onAction="#btnLoadTableOnAction" style="-fx-background-color: #6495ED;" text="Load Table">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>
