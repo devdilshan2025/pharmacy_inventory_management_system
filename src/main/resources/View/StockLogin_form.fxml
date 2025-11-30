@@ -10,16 +10,16 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="748.0" style="-fx-background-color: #FFFDD0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StockLoginFormController">
+<AnchorPane prefHeight="400.0" prefWidth="835.0" style="-fx-background-color: #FFFDD0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StockLoginFormController">
    <children>
-      <TableView fx:id="tblStock" layoutX="20.0" layoutY="49.0" prefHeight="277.0" prefWidth="448.0">
+      <TableView fx:id="tblStock" layoutX="20.0" layoutY="49.0" prefHeight="277.0" prefWidth="533.0">
         <columns>
-          <TableColumn fx:id="colId" prefWidth="75.0" text="Item ID" />
-          <TableColumn fx:id="colName" prefWidth="75.0" text="Name" />
-            <TableColumn fx:id="colBrand" prefWidth="75.0" text="Brand" />
-            <TableColumn fx:id="colExp" prefWidth="75.0" text="Expire Date" />
-            <TableColumn fx:id="colQuantity" prefWidth="75.0" text="Quantity" />
-            <TableColumn fx:id="colPrice" prefWidth="75.0" text="Price" />
+          <TableColumn fx:id="colId" prefWidth="79.33331108093262" text="Item ID" />
+          <TableColumn fx:id="colName" prefWidth="138.6666488647461" text="Name" />
+            <TableColumn fx:id="colBrand" prefWidth="79.33332824707031" text="Brand" />
+            <TableColumn fx:id="colExp" prefWidth="87.33334350585938" text="Expire Date" />
+            <TableColumn fx:id="colQuantity" prefWidth="75.33331298828125" text="Quantity" />
+            <TableColumn fx:id="colPrice" prefWidth="73.33331298828125" text="Price" />
         </columns>
       </TableView>
       <Label layoutX="20.0" layoutY="21.0" text="Medicine Stock Management">
@@ -27,37 +27,42 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="509.0" layoutY="89.0" text="Name" />
-      <Label layoutX="513.0" layoutY="130.0" text="Brand" />
-      <Label layoutX="508.0" layoutY="169.0" text="Expire Date" />
-      <Label layoutX="514.0" layoutY="212.0" text="Quantity" />
-      <Label layoutX="516.0" layoutY="256.0" text="Price" />
-      <TextField fx:id="txtname" layoutX="584.0" layoutY="85.0" />
-      <TextField fx:id="txtbrand" layoutX="584.0" layoutY="126.0" />
-      <TextField fx:id="txtExp" layoutX="584.0" layoutY="165.0" />
-      <TextField fx:id="txtQuntity" layoutX="584.0" layoutY="208.0" />
-      <TextField fx:id="txtPrice" layoutX="584.0" layoutY="252.0" />
-      <Button fx:id="btnAdd" layoutX="509.0" layoutY="300.0" mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #ADD8E6;" text="Add">
+      <Label layoutX="576.0" layoutY="89.0" text="Name" />
+      <Label layoutX="576.0" layoutY="130.0" text="Brand" />
+      <Label layoutX="577.0" layoutY="169.0" text="Expire Date" />
+      <Label layoutX="576.0" layoutY="212.0" text="Quantity" />
+      <Label layoutX="579.0" layoutY="256.0" text="Price" />
+      <TextField fx:id="txtname" layoutX="671.0" layoutY="85.0" />
+      <TextField fx:id="txtbrand" layoutX="671.0" layoutY="126.0" />
+      <TextField fx:id="txtExp" layoutX="671.0" layoutY="165.0" />
+      <TextField fx:id="txtQuntity" layoutX="671.0" layoutY="208.0" />
+      <TextField fx:id="txtPrice" layoutX="671.0" layoutY="252.0" />
+      <Button fx:id="btnAdd" layoutX="564.0" layoutY="300.0" mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #ADD8E6;" text="Add">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnUpdate" layoutX="595.0" layoutY="300.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" style="-fx-background-color: #FFEA00;" text="Update">
+      <Button fx:id="btnUpdate" layoutX="631.0" layoutY="300.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" style="-fx-background-color: #FFEA00;" text="Update">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnDelete" layoutX="677.0" layoutY="300.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #FF2E2E;" text="Delete">
+      <Button fx:id="btnDelete" layoutX="764.0" layoutY="300.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #FF2E2E;" text="Delete">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Label layoutX="509.0" layoutY="49.0" text="Item ID" />
-      <TextField fx:id="txtItemId" layoutX="584.0" layoutY="45.0" />
-      <JFXButton fx:id="btnLoadTable" layoutX="207.0" layoutY="340.0" onAction="#btnLoadTableOnAction" style="-fx-background-color: #6495ED;" text="Load Table">
+      <Label layoutX="579.0" layoutY="49.0" text="Item ID" />
+      <TextField fx:id="txtItemId" layoutX="671.0" layoutY="45.0" />
+      <JFXButton fx:id="btnLoadTable" layoutX="233.0" layoutY="339.0" onAction="#btnLoadTableOnAction" style="-fx-background-color: #6495ED;" text="Load Table">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </JFXButton>
+      <Button fx:id="btnClear" layoutX="698.0" layoutY="300.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #FF8AFF;" text="Clear">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

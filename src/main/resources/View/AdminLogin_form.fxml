@@ -7,8 +7,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdminLoginFormController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFDD0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdminLoginFormController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e6e6e6" height="293.0" layoutX="177.0" layoutY="48.0" stroke="BLACK" strokeType="INSIDE" width="277.0" />
       <Label layoutX="289.0" layoutY="85.0" prefHeight="27.0" prefWidth="61.0" text="Login">

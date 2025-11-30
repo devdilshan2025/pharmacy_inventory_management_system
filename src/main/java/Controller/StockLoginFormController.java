@@ -25,6 +25,9 @@ public class StockLoginFormController implements Initializable {
     ObservableList<StockInfo> stockInfos = FXCollections.observableArrayList();
 
     @FXML
+    private Button btnClear;
+
+    @FXML
     private Button btnAdd;
 
     @FXML
@@ -107,6 +110,17 @@ public class StockLoginFormController implements Initializable {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnClearOnAction(ActionEvent event) {
+        txtItemId.setText(null);
+        txtname.setText(null);
+        txtbrand.setText(null);
+        txtExp.setText(null);
+        txtPrice.setText(null);
+        txtQuntity.setText(null);
 
     }
 
