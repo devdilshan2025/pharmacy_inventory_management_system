@@ -54,11 +54,7 @@
       </Button>
       <Label layoutX="579.0" layoutY="49.0" text="Item ID" />
       <TextField fx:id="txtItemId" layoutX="671.0" layoutY="45.0" />
-      <JFXButton fx:id="btnLoadTable" layoutX="233.0" layoutY="339.0" onAction="#btnLoadTableOnAction" style="-fx-background-color: #6495ED;" text="Load Table">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </JFXButton>
+
       <Button fx:id="btnClear" layoutX="698.0" layoutY="300.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #FF8AFF;" text="Clear">
          <font>
             <Font name="System Bold" size="12.0" />

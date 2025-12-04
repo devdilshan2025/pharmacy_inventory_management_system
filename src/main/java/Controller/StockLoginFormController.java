@@ -7,16 +7,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.dto.StockInfo;
 
 import java.net.URL;
 import java.sql.*;
-import java.util.Date;
 import java.util.ResourceBundle;
 import java.time.LocalDate;
 
@@ -36,8 +32,6 @@ public class StockLoginFormController implements Initializable {
     @FXML
     private Button btnUpdate;
 
-    @FXML
-    private JFXButton btnLoadTable;
 
     @FXML
     private TableColumn<?, ?> colBrand;
@@ -100,6 +94,7 @@ public class StockLoginFormController implements Initializable {
             preparedStatement.setObject(6,price);
 
             preparedStatement.executeUpdate();
+            loadStockDetails();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -110,27 +105,73 @@ public class StockLoginFormController implements Initializable {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Pharmacy", "root", "1234");
+            PreparedStatement pstm = connection.prepareStatement("DELETE FROM item WHERE ItemCode = ? ");
+            pstm.setObject(1,txtItemId.getText());
+            pstm.executeUpdate();
+            loadStockDetails();
+            clearTextField();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
     @FXML
     void btnClearOnAction(ActionEvent event) {
+       clearTextField();
+
+    }
+
+    private void clearTextField(){
         txtItemId.setText(null);
         txtname.setText(null);
         txtbrand.setText(null);
         txtExp.setText(null);
         txtPrice.setText(null);
         txtQuntity.setText(null);
-
     }
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
 
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Pharmacy", "root", "1234");
+
+            String sql = "UPDATE item SET Name=?, Brand=?, ExpeDate=?, Quantity=?, UnitPrice=? WHERE ItemCode=?";
+
+            PreparedStatement pst = connection.prepareStatement(sql);
+
+            pst.setObject(1,txtname.getText());
+            pst.setObject(2,txtbrand.getText());
+            pst.setObject(3,LocalDate.parse(txtExp.getText()));
+            pst.setObject(4,Integer.parseInt(txtQuntity.getText()));
+            pst.setObject(5,Double.parseDouble(txtPrice.getText()));
+            pst.setObject(6,txtItemId.getText());
+
+
+            int rows = pst.executeUpdate();
+
+
+            if (rows > 0) {
+                new Alert(Alert.AlertType.INFORMATION, "Updated Successfully!").show();
+                loadStockDetails();
+            } else {
+                new Alert(Alert.AlertType.WARNING, "No item found!").show();
+            }
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
-    @FXML
-    void btnLoadTableOnAction(ActionEvent event) {
+    private void loadStockDetails(){
+
+        stockInfos.clear();
 
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Pharmacy", "root", "1234");
@@ -155,7 +196,12 @@ public class StockLoginFormController implements Initializable {
             throw new RuntimeException(e);
         }
 
+        tblStock.setItems(stockInfos);
+
+
     }
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -168,6 +214,18 @@ public class StockLoginFormController implements Initializable {
         colQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-        tblStock.setItems(stockInfos);
+       loadStockDetails();
+
+       tblStock.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
+           if (newValue !=null){
+               txtItemId.setText(newValue.getItemId());
+               txtname.setText(newValue.getName());
+               txtbrand.setText(newValue.getBrand());
+               txtExp.setText(String.valueOf(newValue.getExpDate()));
+               txtQuntity.setText(String.valueOf(newValue.getQuantity()));
+               txtPrice.setText(String.valueOf(newValue.getPrice()));
+
+           }
+       });
     }
 }
