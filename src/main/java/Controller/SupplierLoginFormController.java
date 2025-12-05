@@ -140,6 +140,35 @@ public class SupplierLoginFormController implements Initializable {
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
 
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Pharmacy", "root", "1234");
+            String sql = "UPDATE supplier SET name=?, contact_Person=?, phone=?, email=?, Address=?, notes=? WHERE supplier_id=?";
+
+            PreparedStatement pst = connection.prepareStatement(sql);
+
+            pst.setObject(1,txtName.getText());
+            pst.setObject(2,txtContactPerson.getText());
+            pst.setObject(3,txtPhone.getText());
+            pst.setObject(4,txtEmail.getText());
+            pst.setObject(5,txtAddress.getText());
+            pst.setObject(6,txtNotes.getText());
+            pst.setObject(7,txtSupplierID.getText());
+
+
+            int rows = pst.executeUpdate();
+
+
+            if (rows > 0) {
+                new Alert(Alert.AlertType.INFORMATION, "Updated Successfully!").show();
+                loadSupplyDetails();
+            } else {
+                new Alert(Alert.AlertType.WARNING, "No item found!").show();
+            }
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
