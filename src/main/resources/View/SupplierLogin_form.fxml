@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="934.0" style="-fx-background-color: #FFFDD0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SupplierLoginFormController">
+   <children>
+      <Label layoutX="216.0" layoutY="10.0" prefHeight="33.0" prefWidth="152.0" style="-fx-background-color: #5C5CFF;" text="Supplier Management">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblSupplier" layoutX="14.0" layoutY="56.0" prefHeight="310.0" prefWidth="615.0">
+        <columns>
+          <TableColumn fx:id="colSupplierID" prefWidth="75.0" text="Supplier ID" />
+          <TableColumn fx:id="colName" prefWidth="75.0" text="Name" />
+            <TableColumn fx:id="colContactPerson" prefWidth="109.99993896484375" text="Contact Person" />
+            <TableColumn fx:id="colPhone" prefWidth="93.33334350585938" text="Phone" />
+            <TableColumn fx:id="colEmail" prefWidth="78.0" text="E-mail" />
+            <TableColumn fx:id="colAddress" prefWidth="84.00003051757812" text="Address" />
+            <TableColumn fx:id="colNotes" prefWidth="98.66668701171875" text="Notes" />
+        </columns>
+      </TableView>
+      <JFXButton fx:id="btnUpdate" layoutX="716.0" layoutY="334.0" onAction="#btnUpdateOnAction" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: #FFEA00;" text="Update" />
+      <JFXButton fx:id="btnAdd" layoutX="644.0" layoutY="334.0" onAction="#btnAddOnAction" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: #ADD8E6;" text="Add" />
+      <JFXButton fx:id="btnClear" layoutX="789.0" layoutY="334.0" onAction="#btnClearOnAction" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: #FF8AFF;" text="Clear" />
+      <JFXButton fx:id="btnDelete" layoutX="863.0" layoutY="334.0" onAction="#btnDeleteOnAction" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: #FF2E2E;" text="Delete" />
+      <Label layoutX="674.0" layoutY="59.0" text="Supplier ID" />
+      <Label layoutX="676.0" layoutY="128.0" text="Contact Person" />
+      <Label layoutX="680.0" layoutY="161.0" text="Phone" />
+      <Label layoutX="680.0" layoutY="200.0" text="E-mail" />
+      <Label layoutX="682.0" layoutY="233.0" text="Address" />
+      <Label layoutX="681.0" layoutY="95.0" text="Name" />
+      <Label layoutX="680.0" layoutY="267.0" prefHeight="17.0" prefWidth="34.0" text="Notes" />
+      <TextField fx:id="txtSupplierID" layoutX="762.0" layoutY="55.0" />
+      <TextField fx:id="txtName" layoutX="762.0" layoutY="91.0" />
+      <TextField fx:id="txtContactPerson" layoutX="762.0" layoutY="124.0" />
+      <TextField fx:id="txtPhone" layoutX="762.0" layoutY="157.0" />
+      <TextField fx:id="txtEmail" layoutX="762.0" layoutY="196.0" />
+      <TextField fx:id="txtAddress" layoutX="762.0" layoutY="229.0" />
+      <TextField fx:id="txtNotes" layoutX="762.0" layoutY="263.0" />
+   </children>
+</AnchorPane>

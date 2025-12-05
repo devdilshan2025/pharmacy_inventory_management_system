@@ -34,6 +34,14 @@ public class StockSupplyLoginFormController {
     @FXML
     void btnSupplyOnAction(ActionEvent event) {
 
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/View/SupplierLogin_form.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.show();
+
+
     }
 
 }
