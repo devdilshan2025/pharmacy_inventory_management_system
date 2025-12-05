@@ -81,6 +81,25 @@ public class SupplierLoginFormController implements Initializable {
     @FXML
     void btnAddOnAction(ActionEvent event) {
 
+        try {
+            Connection  connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Pharmacy", "root", "1234");
+            String sql = "INSERT INTO supplier VALUES(?,?,?,?,?,?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setObject(1,txtSupplierID.getText());
+            preparedStatement.setObject(2,txtName.getText());
+            preparedStatement.setObject(3,txtContactPerson.getText());
+            preparedStatement.setObject(4,txtPhone.getText());
+            preparedStatement.setObject(5,txtEmail.getText());
+            preparedStatement.setObject(6,txtAddress.getText());
+            preparedStatement.setObject(7,txtNotes.getText());
+
+            preparedStatement.executeUpdate();
+            loadSupplyDetails();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @FXML
