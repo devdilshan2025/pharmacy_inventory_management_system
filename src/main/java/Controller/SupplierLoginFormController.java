@@ -122,6 +122,17 @@ public class SupplierLoginFormController implements Initializable {
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
 
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Pharmacy", "root", "1234");
+            PreparedStatement pstm = connection.prepareStatement("DELETE FROM supplier WHERE supplier_id = ? ");
+            pstm.setObject(1,txtSupplierID.getText());
+            pstm.executeUpdate();
+            loadSupplyDetails();
+            clearTextField();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @FXML
@@ -131,7 +142,7 @@ public class SupplierLoginFormController implements Initializable {
 
     private void loadSupplyDetails(){
 
-        clearTextField();
+        supplyInfos.clear();
 
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Pharmacy", "root", "1234");
@@ -171,5 +182,18 @@ public class SupplierLoginFormController implements Initializable {
         colNotes.setCellValueFactory(new PropertyValueFactory<>("notes"));
 
         loadSupplyDetails();
+
+        tblSupplier.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (newValue !=null){
+                txtSupplierID.setText(newValue.getSupplierID());
+                txtName.setText(newValue.getName());
+                txtContactPerson.setText(newValue.getContactPerson());
+                txtPhone.setText(String.valueOf(newValue.getPhone()));
+                txtEmail.setText(String.valueOf(newValue.getEmail()));
+                txtAddress.setText(String.valueOf(newValue.getAddress()));
+                txtNotes.setText(String.valueOf(newValue.getNotes()));
+
+            }
+        });
     }
 }
