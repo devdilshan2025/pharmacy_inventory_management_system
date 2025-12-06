@@ -1,5 +1,7 @@
 package Controller.StockController;
 
+import Service.StockService.StockLoginService;
+import Service.StockService.StockLoginServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,7 +18,7 @@ import java.time.LocalDate;
 public class StockLoginFormController implements Initializable {
 
    // StockLoginController stockLoginController = new StockLoginController();
-    StockLoginService stockLoginService = new StockLoginController();
+    StockLoginService stockLoginService = new StockLoginServiceImpl();
     ObservableList<StockInfo> stockInfos = FXCollections.observableArrayList();
 
     @FXML

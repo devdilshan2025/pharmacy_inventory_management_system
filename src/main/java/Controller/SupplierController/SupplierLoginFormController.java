@@ -1,13 +1,13 @@
 package Controller.SupplierController;
 
+import Service.SupplyService.SupplierLoginService;
+import Service.SupplyService.SupplierLoginServiceImpl;
 import com.jfoenix.controls.JFXButton;
-import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -15,12 +15,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.dto.SupplyInfo;
 
 import java.net.URL;
-import java.sql.*;
 import java.util.ResourceBundle;
 
 public class SupplierLoginFormController implements Initializable {
 
-    SupplierLoginService supplierLoginService = new SupplierLoginController();
+    SupplierLoginService supplierLoginService = new SupplierLoginServiceImpl();
     ObservableList<SupplyInfo> supplyInfos = FXCollections.observableArrayList();
 
     @FXML
