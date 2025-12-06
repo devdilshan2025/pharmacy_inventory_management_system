@@ -1,6 +1,7 @@
 package Controller.SupplierController;
 
 import com.jfoenix.controls.JFXButton;
+import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +20,7 @@ import java.util.ResourceBundle;
 
 public class SupplierLoginFormController implements Initializable {
 
+    SupplierLoginService supplierLoginService = new SupplierLoginController();
     ObservableList<SupplyInfo> supplyInfos = FXCollections.observableArrayList();
 
     @FXML
@@ -81,24 +83,8 @@ public class SupplierLoginFormController implements Initializable {
     @FXML
     void btnAddOnAction(ActionEvent event) {
 
-        try {
-            Connection  connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Pharmacy", "root", "1234");
-            String sql = "INSERT INTO supplier VALUES(?,?,?,?,?,?,?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setObject(1,txtSupplierID.getText());
-            preparedStatement.setObject(2,txtName.getText());
-            preparedStatement.setObject(3,txtContactPerson.getText());
-            preparedStatement.setObject(4,txtPhone.getText());
-            preparedStatement.setObject(5,txtEmail.getText());
-            preparedStatement.setObject(6,txtAddress.getText());
-            preparedStatement.setObject(7,txtNotes.getText());
-
-            preparedStatement.executeUpdate();
-            loadSupplyDetails();
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        supplierLoginService.addSuppliers(txtSupplierID.getText(), txtName.getText(), txtContactPerson.getText(), txtPhone.getText(), txtEmail.getText(), txtAddress.getText(), txtNotes.getText());
+        loadSupplyDetails();
 
     }
 
@@ -122,82 +108,24 @@ public class SupplierLoginFormController implements Initializable {
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
 
-        try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Pharmacy", "root", "1234");
-            PreparedStatement pstm = connection.prepareStatement("DELETE FROM supplier WHERE supplier_id = ? ");
-            pstm.setObject(1,txtSupplierID.getText());
-            pstm.executeUpdate();
-            loadSupplyDetails();
-            clearTextField();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        supplierLoginService.deleteStockDetails(txtSupplierID.getText());
+        loadSupplyDetails();
+        clearTextField();
 
     }
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
 
-        try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Pharmacy", "root", "1234");
-            String sql = "UPDATE supplier SET name=?, contact_Person=?, phone=?, email=?, Address=?, notes=? WHERE supplier_id=?";
-
-            PreparedStatement pst = connection.prepareStatement(sql);
-
-            pst.setObject(1,txtName.getText());
-            pst.setObject(2,txtContactPerson.getText());
-            pst.setObject(3,txtPhone.getText());
-            pst.setObject(4,txtEmail.getText());
-            pst.setObject(5,txtAddress.getText());
-            pst.setObject(6,txtNotes.getText());
-            pst.setObject(7,txtSupplierID.getText());
-
-
-            int rows = pst.executeUpdate();
-
-
-            if (rows > 0) {
-                new Alert(Alert.AlertType.INFORMATION, "Updated Successfully!").show();
-                loadSupplyDetails();
-            } else {
-                new Alert(Alert.AlertType.WARNING, "No item found!").show();
-            }
-
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
+        supplierLoginService.updateSupplier(txtName.getText(), txtContactPerson.getText(), txtPhone.getText(), txtEmail.getText(), txtAddress.getText(), txtNotes.getText(), txtSupplierID.getText());
+        loadSupplyDetails();
     }
 
     private void loadSupplyDetails(){
 
         supplyInfos.clear();
 
-        try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Pharmacy", "root", "1234");
-            String sql = "SELECT * FROM supplier";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()){
-                SupplyInfo supplyInfo =new SupplyInfo(
-                        resultSet.getString("supplier_id"),
-                        resultSet.getString("name"),
-                        resultSet.getString("contact_Person"),
-                        resultSet.getString("phone"),
-                        resultSet.getString("email"),
-                        resultSet.getString("Address"),
-                        resultSet.getString("notes")
-                );
-
-                supplyInfos.add(supplyInfo);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        tblSupplier.setItems(supplyInfos);
+        tblSupplier.setItems(supplierLoginService.getAllSuppliers());
 
     }
 
