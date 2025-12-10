@@ -15,4 +15,5 @@ public interface StockLoginService {
 
     void updateStock( String name, String brand, LocalDate exp, int quantity, double price, String itemID);
 
+    StockInfo searchItem(String text, String txtnameText);
 }

@@ -6,6 +6,8 @@ import java.time.LocalDate;
 
 public interface StockRepository {
 
+    ResultSet searchItem(String itemID, String name) throws SQLException;
+
     ResultSet getAllStock() throws SQLException;
 
     void addStockDetails(String itemID, String name, String brand, LocalDate exp, int quantity, double price) throws SQLException;

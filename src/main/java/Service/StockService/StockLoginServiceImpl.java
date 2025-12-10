@@ -2,6 +2,7 @@ package Service.StockService;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import model.dto.StockInfo;
 import repository.StockRepository.StockRepository;
 import repository.StockRepository.StockRepositoryImpl;
@@ -81,5 +82,30 @@ public class StockLoginServiceImpl implements StockLoginService {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public StockInfo searchItem(String itemID, String name) {
+
+        try {
+
+            ResultSet resultSet = stockRepository.searchItem(itemID, name);
+            resultSet.next();
+            return new StockInfo(
+                    resultSet.getString("ItemCode"),
+                    resultSet.getString("Name"),
+                    resultSet.getString("Brand"),
+                    resultSet.getDate("ExpeDate").toLocalDate(),
+                    resultSet.getInt("Quantity"),
+                    resultSet.getDouble("UnitPrice")
+
+            );
+        } catch (SQLException e) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR, "This ItemCode not in DataBase");
+            alert.show();
+            throw new RuntimeException(e);
+        }
+
     }
 }

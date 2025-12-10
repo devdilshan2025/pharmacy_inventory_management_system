@@ -64,6 +64,19 @@ public class StockRepositoryImpl implements  StockRepository {
         }
     }
 
+    @Override
+    public ResultSet searchItem(String itemID, String name) throws SQLException {
+
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement("SELECT * FROM item WHERE ItemCode = ? OR Name= ?");
+        pstm.setObject(1,itemID);
+        pstm.setObject(2,name);
+        ResultSet resultSet = pstm.executeQuery();
+
+        return resultSet;
+
+    }
+
 
     @Override
     public ResultSet getAllStock() throws SQLException {

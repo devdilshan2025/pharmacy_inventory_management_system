@@ -18,7 +18,10 @@ public class PharmacyLoginformController {
     private Button btnAdmin;
 
     @FXML
-    private Button btnCustomers;
+    private Button btnOrderDetail;
+
+    @FXML
+    private Button btnPlaceOrder;
 
     @FXML
     private ImageView image1;
@@ -35,18 +38,17 @@ public class PharmacyLoginformController {
 
     }
 
-
     @FXML
-    void btnCustomerOnAction(ActionEvent event) {
-
-
-        try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/View/Order_form.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        stage.show();
+    void btnOrderDetailOnAction(ActionEvent event) {
 
     }
+
+    @FXML
+    void btnPlaceOrderOnAction(ActionEvent event) {
+
+    }
+
+
+
 
 }

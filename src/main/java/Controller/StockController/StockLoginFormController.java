@@ -31,6 +31,9 @@ public class StockLoginFormController implements Initializable {
     private Button btnDelete;
 
     @FXML
+    private Button btnSearch;
+
+    @FXML
     private Button btnUpdate;
 
 
@@ -111,6 +114,19 @@ public class StockLoginFormController implements Initializable {
         stockLoginService.updateStock(txtname.getText(), txtbrand.getText(), LocalDate.parse(txtExp.getText()), Integer.parseInt(txtQuntity.getText()), Double.parseDouble(txtPrice.getText()), txtItemId.getText());
         loadStockDetails();
 
+
+    }
+
+    @FXML
+    void btnSearchOnAction(ActionEvent event) {
+
+       StockInfo searchStockInfo = stockLoginService.searchItem(txtItemId.getText(), txtname.getText());
+       txtItemId.setText(searchStockInfo.getItemId());
+       txtname.setText(searchStockInfo.getName());
+       txtbrand.setText(searchStockInfo.getBrand());
+       txtExp.setText(String.valueOf(searchStockInfo.getExpDate()));
+       txtQuntity.setText(String.valueOf(searchStockInfo.getQuantity()));
+       txtPrice.setText(String.valueOf(searchStockInfo.getPrice()));
 
     }
 
