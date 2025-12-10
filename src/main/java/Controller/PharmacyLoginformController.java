@@ -46,6 +46,13 @@ public class PharmacyLoginformController {
     @FXML
     void btnPlaceOrderOnAction(ActionEvent event) {
 
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/View/PlaceOrder_form.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.show();
+
     }
 
 

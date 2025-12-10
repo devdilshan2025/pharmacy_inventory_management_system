@@ -17,7 +17,7 @@
             <TableColumn fx:id="colBrand" prefWidth="79.33332824707031" text="Brand" />
             <TableColumn fx:id="colExp" prefWidth="87.33334350585938" text="Expire Date" />
             <TableColumn fx:id="colQuantity" prefWidth="75.33331298828125" text="Quantity" />
-            <TableColumn fx:id="colPrice" prefWidth="73.33331298828125" text="Price" />
+            <TableColumn fx:id="colPrice" prefWidth="73.33331298828125" text="Unit Price" />
         </columns>
       </TableView>
       <Label layoutX="198.0" layoutY="7.0" prefHeight="37.0" prefWidth="198.0" style="-fx-background-color: #5C5CFF;" text="Medicine Stock Management">
