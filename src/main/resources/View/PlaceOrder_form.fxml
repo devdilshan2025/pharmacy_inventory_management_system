@@ -17,14 +17,15 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TableView layoutX="21.0" layoutY="71.0" prefHeight="425.0" prefWidth="546.0">
+      <TableView fx:id="tblPlaceOrder" layoutX="21.0" layoutY="71.0" prefHeight="425.0" prefWidth="546.0">
         <columns>
-          <TableColumn prefWidth="87.99996948242188" text="Item code" />
-          <TableColumn prefWidth="102.66665649414062" text="Item name" />
-            <TableColumn prefWidth="92.66664123535156" text="Quantity" />
-            <TableColumn prefWidth="84.0" text="Unit price" />
-            <TableColumn prefWidth="86.6666259765625" text="Discount" />
-            <TableColumn prefWidth="91.99996948242188" text="Total" />
+          <TableColumn fx:id="colItemCode" prefWidth="87.99996948242188" text="Item code" />
+          <TableColumn fx:id="colItemName" prefWidth="102.66665649414062" text="Item name" />
+            <TableColumn fx:id="colQuantity" prefWidth="92.66664123535156" text="Quantity" />
+            <TableColumn fx:id="colUnitPrice" prefWidth="84.0" text="Unit price" />
+            <TableColumn fx:id="colDiscount" prefWidth="86.6666259765625" text="Discount" />
+            <TableColumn fx:id="colTotal" prefWidth="91.99996948242188" text="Total" />
+            <TableColumn fx:id="colTotal1" prefWidth="91.99996948242188" text="Total" />
         </columns>
       </TableView>
       <Label layoutX="689.0" layoutY="47.0" text="Order Detail">
@@ -33,30 +34,30 @@
          </font>
       </Label>
       <Line endX="61.33331298828125" endY="-7.62939453125E-6" layoutX="727.0" layoutY="71.0" startX="-72.66668701171875" startY="-7.62939453125E-6" />
-      <Label layoutX="613.0" layoutY="88.0" prefHeight="17.0" prefWidth="76.0" text="Custome ID">
+      <Label layoutX="613.0" layoutY="88.0" prefHeight="17.0" prefWidth="76.0" text="Customer ID">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="610.0" layoutY="127.0" prefHeight="17.0" prefWidth="88.0" text="Custome Name">
+      <Label layoutX="610.0" layoutY="127.0" prefHeight="17.0" prefWidth="96.0" text="Customer Name">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <TextField layoutX="721.0" layoutY="84.0" />
-      <Label layoutX="721.0" layoutY="127.0" text="Name" />
+      <TextField fx:id="txtcusID" layoutX="721.0" layoutY="84.0" onAction="#txtcusIDOnAction" />
+      <Label fx:id="lblCusName" layoutX="721.0" layoutY="127.0" text="Name" />
       <Line endX="169.66668701171875" endY="1.52587890625E-5" layoutX="709.0" layoutY="156.0" startX="-115.6666259765625" startY="1.52587890625E-5" />
-      <Label layoutX="611.0" layoutY="182.0" prefHeight="17.0" prefWidth="69.0" text="Item code">
+      <Label layoutX="611.0" layoutY="182.0" prefHeight="17.0" prefWidth="69.0" text="Item Code">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="610.0" layoutY="253.0" prefHeight="17.0" prefWidth="78.0" text="Unit price">
+      <Label layoutX="610.0" layoutY="253.0" prefHeight="17.0" prefWidth="78.0" text="Unit Price">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="610.0" layoutY="224.0" prefHeight="17.0" prefWidth="88.0" text="Item name">
+      <Label layoutX="610.0" layoutY="224.0" prefHeight="17.0" prefWidth="88.0" text="Item Name">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -66,28 +67,28 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <TextField layoutX="724.0" layoutY="178.0" />
-      <Label layoutX="724.0" layoutY="224.0" text="Item name" />
-      <Label layoutX="725.0" layoutY="253.0" text="Unit price" />
-      <Label layoutX="727.0" layoutY="283.0" text="Discount" />
-      <TextField layoutX="724.0" layoutY="308.0" />
+      <TextField fx:id="txtItemCode" layoutX="724.0" layoutY="178.0" onAction="#txtItemCodeOnAction" />
+      <Label fx:id="lblItemName" layoutX="724.0" layoutY="224.0" text="Item name" />
+      <Label fx:id="lblUnitPrice" layoutX="725.0" layoutY="253.0" text="Unit price" />
+      <Label fx:id="lblDiscount" layoutX="727.0" layoutY="283.0" text="Discount" />
+      <TextField fx:id="txtQuantity" layoutX="724.0" layoutY="308.0" />
       <Label layoutX="610.0" layoutY="312.0" prefHeight="17.0" prefWidth="88.0" text="Quantity">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <JFXButton layoutX="795.0" layoutY="472.0" style="-fx-background-color: #FFEA00;" text="Place Order" />
+      <JFXButton fx:id="btnPlaceOrder" layoutX="795.0" layoutY="472.0" onAction="#btnPlaceOrderOnAction" style="-fx-background-color: #FFEA00;" text="Place Order" />
       <Line endX="165.0" layoutX="721.0" layoutY="391.0" startX="-123.0" />
       <Label layoutX="613.0" layoutY="421.0" text="Net Total :" textFill="#e01919">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="707.0" layoutY="421.0" prefHeight="17.0" prefWidth="88.0" text="0.0" textFill="#d71313">
+      <Label fx:id="lblNetTotal" alignment="CENTER" layoutX="707.0" layoutY="421.0" prefHeight="17.0" prefWidth="88.0" text="0.0" textFill="#d71313">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <JFXButton layoutX="727.0" layoutY="357.0" style="-fx-background-color: #FF8AFF;" text="Add to cart" />
+      <JFXButton fx:id="btnAddToCart" layoutX="727.0" layoutY="357.0" onAction="#btnAddToCart" style="-fx-background-color: #FF8AFF;" text="Add to cart" />
    </children>
 </AnchorPane>
