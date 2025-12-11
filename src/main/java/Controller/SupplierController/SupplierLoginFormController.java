@@ -1,7 +1,7 @@
 package Controller.SupplierController;
 
-import Service.SupplyService.SupplierLoginService;
-import Service.SupplyService.SupplierLoginServiceImpl;
+import Service.SupplierLoginService;
+import Service.Impl.SupplierLoginServiceImpl;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

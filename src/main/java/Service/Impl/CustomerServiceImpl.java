@@ -1,13 +1,14 @@
-package Service.CustomerService;
+package Service.Impl;
 
+import Service.CustomerService;
 import model.dto.Customer;
-import repository.CustomerRepository.CustomerRepository;
-import repository.CustomerRepository.CustomerRepositoryImpl;
+import repository.CustomerRepository;
+import repository.Impl.CustomerRepositoryImpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CustomerServiceImpl implements CustomerService{
+public class CustomerServiceImpl implements CustomerService {
 
     CustomerRepository customerRepository = new CustomerRepositoryImpl();
 

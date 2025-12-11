@@ -1,7 +1,7 @@
 package Controller.StockController;
 
-import Service.StockService.StockLoginService;
-import Service.StockService.StockLoginServiceImpl;
+import Service.StockLoginService;
+import Service.Impl.StockLoginServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

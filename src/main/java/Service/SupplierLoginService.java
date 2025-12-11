@@ -1,4 +1,4 @@
-package Service.SupplyService;
+package Service;
 
 import javafx.collections.ObservableList;
 import model.dto.SupplyInfo;

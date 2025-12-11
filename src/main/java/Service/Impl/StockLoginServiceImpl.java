@@ -1,11 +1,12 @@
-package Service.StockService;
+package Service.Impl;
 
+import Service.StockLoginService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import model.dto.StockInfo;
-import repository.StockRepository.StockRepository;
-import repository.StockRepository.StockRepositoryImpl;
+import repository.StockRepository;
+import repository.Impl.StockRepositoryImpl;
 
 import java.sql.*;
 import java.time.LocalDate;

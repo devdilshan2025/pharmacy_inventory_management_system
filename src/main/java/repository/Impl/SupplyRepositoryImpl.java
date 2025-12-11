@@ -1,7 +1,8 @@
-package repository.SupplyRepository;
+package repository.Impl;
 
 import db.DBConnection;
 import javafx.scene.control.Alert;
+import repository.SupplyRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

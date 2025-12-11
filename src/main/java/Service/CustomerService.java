@@ -1,4 +1,4 @@
-package Service.CustomerService;
+package Service;
 
 import model.dto.Customer;
 

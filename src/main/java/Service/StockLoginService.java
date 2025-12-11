@@ -1,4 +1,4 @@
-package Service.StockService;
+package Service;
 
 import javafx.collections.ObservableList;
 import model.dto.StockInfo;

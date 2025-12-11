@@ -1,13 +1,14 @@
-package repository.CustomerRepository;
+package repository.Impl;
 
 import db.DBConnection;
+import repository.CustomerRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CustomerRepositoryImpl implements CustomerRepository{
+public class CustomerRepositoryImpl implements CustomerRepository {
 
 
     @Override

@@ -1,9 +1,7 @@
 package Controller.PlaceOrder;
 
-import Service.CustomerService.CustomerService;
-import Service.CustomerService.CustomerServiceImpl;
-import Service.StockService.StockLoginService;
-import Service.StockService.StockLoginServiceImpl;
+import Service.PlaceOrderService;
+import Service.Impl.PlaceOrderServiceImpl;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,8 +14,7 @@ import model.dto.StockInfo;
 
 public class PlaceOrderFormController {
 
-    StockLoginService stockLoginService = new StockLoginServiceImpl();
-    CustomerService customerService = new CustomerServiceImpl();
+    PlaceOrderService placeOrderService = new PlaceOrderServiceImpl();
 
     @FXML
     private JFXButton btnAddToCart;
@@ -86,19 +83,16 @@ public class PlaceOrderFormController {
     @FXML
     void txtItemCodeOnAction(ActionEvent event) {
 
-        StockInfo item = stockLoginService.searchItem(txtItemCode.getText(), null);
+        StockInfo item = placeOrderService.searchItem(txtItemCode.getText(), null);
         lblItemName.setText(item.getName());
         lblUnitPrice.setText(String.valueOf(item.getPrice()));
-
-
-
 
     }
 
     @FXML
     void txtcusIDOnAction(ActionEvent event) {
 
-        Customer customer = customerService.getCustomer(txtcusID.getText());
+        Customer customer = placeOrderService.getCustomer(txtcusID.getText());
         lblCusName.setText(customer.getCustomerName());
 
     }

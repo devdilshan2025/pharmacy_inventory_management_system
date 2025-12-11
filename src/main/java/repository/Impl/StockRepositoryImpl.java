@@ -1,7 +1,8 @@
-package repository.StockRepository;
+package repository.Impl;
 
 import db.DBConnection;
 import javafx.scene.control.Alert;
+import repository.StockRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-public class StockRepositoryImpl implements  StockRepository {
+public class StockRepositoryImpl implements StockRepository {
 
     @Override
     public void addStockDetails(String itemID, String name, String brand, LocalDate exp, int quantity, double price) throws SQLException {
