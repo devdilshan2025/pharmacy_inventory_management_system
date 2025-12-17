@@ -3,16 +3,26 @@ package Controller.PlaceOrder;
 import Service.PlaceOrderService;
 import Service.Impl.PlaceOrderServiceImpl;
 import com.jfoenix.controls.JFXButton;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import model.dto.CartItem;
 import model.dto.Customer;
+import model.dto.Orders;
 import model.dto.StockInfo;
 
-public class PlaceOrderFormController {
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
+
+public class PlaceOrderFormController implements Initializable {
 
     PlaceOrderService placeOrderService = new PlaceOrderServiceImpl();
 
@@ -38,9 +48,6 @@ public class PlaceOrderFormController {
     private TableColumn<?, ?> colTotal;
 
     @FXML
-    private TableColumn<?, ?> colTotal1;
-
-    @FXML
     private TableColumn<?, ?> colUnitPrice;
 
     @FXML
@@ -59,7 +66,7 @@ public class PlaceOrderFormController {
     private Label lblUnitPrice;
 
     @FXML
-    private TableView<?> tblPlaceOrder;
+    private TableView<CartItem> tblPlaceOrder;
 
     @FXML
     private TextField txtItemCode;
@@ -68,15 +75,38 @@ public class PlaceOrderFormController {
     private TextField txtQuantity;
 
     @FXML
-    private TextField txtcusID;
+    private TextField txtOrderID;
 
     @FXML
+    private TextField txtcusID;
+
+    ObservableList<CartItem> cartItems = FXCollections.observableArrayList();
+    @FXML
     void btnAddToCart(ActionEvent event) {
+
+        cartItems.add(new CartItem(
+                txtItemCode.getText(),
+                lblItemName.getText(),
+                Integer.parseInt(txtQuantity.getText()),
+                Double.parseDouble(lblUnitPrice.getText()),
+                Double.parseDouble(lblDiscount.getText()),
+                calculateTotal(lblUnitPrice.getText(), txtQuantity.getText())
+
+        ));
+        tblPlaceOrder.setItems(cartItems);
+
+        clearFields();
+        netTotal();
 
     }
 
     @FXML
     void btnPlaceOrderOnAction(ActionEvent event) {
+        placeOrderService.placeaorder(new Orders(
+                txtOrderID.getText(),
+                LocalDate.now(),
+                txtcusID.getText()
+        ),cartItems);
 
     }
 
@@ -97,4 +127,41 @@ public class PlaceOrderFormController {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        colItemCode.setCellValueFactory(new PropertyValueFactory<>("itemCode"));
+        colItemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
+        colQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        colUnitPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
+        colDiscount.setCellValueFactory(new PropertyValueFactory<>("discount"));
+        colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
+
+        lblDiscount.setText("0.0");
+    }
+
+    private  Double calculateTotal(String unitPrice, String quantity){
+
+        Double total = 0.0;
+        total = Double.parseDouble(unitPrice) * Integer.parseInt(quantity);
+        return total;
+    }
+
+    private void clearFields(){
+
+        txtItemCode.setText(null);
+        lblItemName.setText(null);
+        lblUnitPrice.setText(null);
+        lblDiscount.setText("0.0");
+        txtQuantity.setText(null);
+    }
+
+    private void netTotal(){
+        double netTotal = 0.0;
+        for (CartItem cartItem: cartItems){
+            netTotal+= cartItem.getTotal();
+
+            lblNetTotal.setText(String.valueOf(netTotal));
+        }
+
+    }
 }
