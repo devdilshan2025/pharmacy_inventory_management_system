@@ -1,9 +1,6 @@
 package Service.Impl;
 
-import Service.CustomerService;
-import Service.OrderService;
-import Service.PlaceOrderService;
-import Service.StockLoginService;
+import Service.*;
 import javafx.collections.ObservableList;
 import model.dto.CartItem;
 import model.dto.Customer;
@@ -31,11 +28,18 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
         return customer;
     }
 
+    OrderService  orderService = new OrderServiceImpl();
+    OrderDetailService orderDetailService = new OrderDetailServiceImpl();
+
+
     @Override
     public void placeaorder(Orders orders, ObservableList<CartItem> cartItems) {
 
-        OrderService  orderService = new OrderServiceImpl();
-        orderService.addOrder(orders);
 
+       orderService.addOrder(orders);
+
+       orderDetailService.addOrderDetail(orders, cartItems);
+
+       stockLoginService.updateItemQuantity(cartItems);
     }
 }

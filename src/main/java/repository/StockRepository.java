@@ -16,4 +16,6 @@ public interface StockRepository {
 
 
     void updateStock(String name, String brand, LocalDate exp, int quantity, double price, String itemID) throws SQLException;
+
+    void updateItemQuantity(String itemCode, int quantity) throws SQLException;
 }

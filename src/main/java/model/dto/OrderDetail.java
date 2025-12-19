@@ -12,7 +12,7 @@ public class OrderDetail {
     private String orderID;
     private String itemCode;
     private Integer orderQty;
-    private Integer discount;
+    private Double discount;
 
 
 }

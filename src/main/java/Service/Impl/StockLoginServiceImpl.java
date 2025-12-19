@@ -4,6 +4,7 @@ import Service.StockLoginService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import model.dto.CartItem;
 import model.dto.StockInfo;
 import repository.StockRepository;
 import repository.Impl.StockRepositoryImpl;
@@ -109,4 +110,18 @@ public class StockLoginServiceImpl implements StockLoginService {
         }
 
     }
+
+    @Override
+    public void updateItemQuantity(ObservableList<CartItem> cartItems) {
+
+        for (CartItem cartItem: cartItems)
+            try {
+                stockRepository.updateItemQuantity(cartItem.getItemCode(), cartItem.getQuantity());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+    }
+
+
 }

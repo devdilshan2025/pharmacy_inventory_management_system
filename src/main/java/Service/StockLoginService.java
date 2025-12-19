@@ -1,6 +1,7 @@
 package Service;
 
 import javafx.collections.ObservableList;
+import model.dto.CartItem;
 import model.dto.StockInfo;
 
 import java.time.LocalDate;
@@ -16,4 +17,6 @@ public interface StockLoginService {
     void updateStock( String name, String brand, LocalDate exp, int quantity, double price, String itemID);
 
     StockInfo searchItem(String text, String txtnameText);
+
+    void updateItemQuantity(ObservableList<CartItem> cartItems);
 }

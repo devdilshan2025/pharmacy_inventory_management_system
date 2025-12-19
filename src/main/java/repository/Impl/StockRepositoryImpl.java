@@ -66,6 +66,20 @@ public class StockRepositoryImpl implements StockRepository {
     }
 
     @Override
+    public void updateItemQuantity(String itemCode, int quantity) throws SQLException {
+
+        Connection connection = DBConnection.getInstance().getConnection();
+        String sql = "UPDATE item SET Quantity = Quantity - ?  WHERE ItemCode = ?";
+        PreparedStatement pst = connection.prepareStatement(sql);
+
+        pst.setInt(1,quantity);
+        pst.setString(2,itemCode);
+
+        pst.executeUpdate();
+
+    }
+
+    @Override
     public ResultSet searchItem(String itemID, String name) throws SQLException {
 
         Connection connection = DBConnection.getInstance().getConnection();
