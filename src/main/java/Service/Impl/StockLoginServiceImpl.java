@@ -112,15 +112,21 @@ public class StockLoginServiceImpl implements StockLoginService {
     }
 
     @Override
-    public void updateItemQuantity(ObservableList<CartItem> cartItems) {
+    public boolean updateItemQuantity(ObservableList<CartItem> cartItems) {
+
+        boolean isUpdateItem = false;
 
         for (CartItem cartItem: cartItems)
             try {
-                stockRepository.updateItemQuantity(cartItem.getItemCode(), cartItem.getQuantity());
+                isUpdateItem = stockRepository.updateItemQuantity(cartItem.getItemCode(), cartItem.getQuantity());
+                if (isUpdateItem == false){
+                    break;
+                }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
 
+        return isUpdateItem;
     }
 
 

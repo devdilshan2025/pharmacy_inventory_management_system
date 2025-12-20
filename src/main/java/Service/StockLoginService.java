@@ -18,5 +18,5 @@ public interface StockLoginService {
 
     StockInfo searchItem(String text, String txtnameText);
 
-    void updateItemQuantity(ObservableList<CartItem> cartItems);
+    boolean updateItemQuantity(ObservableList<CartItem> cartItems);
 }

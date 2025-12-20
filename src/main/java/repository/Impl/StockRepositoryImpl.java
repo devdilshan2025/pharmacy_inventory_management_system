@@ -66,7 +66,7 @@ public class StockRepositoryImpl implements StockRepository {
     }
 
     @Override
-    public void updateItemQuantity(String itemCode, int quantity) throws SQLException {
+    public boolean updateItemQuantity(String itemCode, int quantity) throws SQLException {
 
         Connection connection = DBConnection.getInstance().getConnection();
         String sql = "UPDATE item SET Quantity = Quantity - ?  WHERE ItemCode = ?";
@@ -75,7 +75,7 @@ public class StockRepositoryImpl implements StockRepository {
         pst.setInt(1,quantity);
         pst.setString(2,itemCode);
 
-        pst.executeUpdate();
+       return pst.executeUpdate() > 0;
 
     }
 

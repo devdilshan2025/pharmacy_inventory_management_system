@@ -19,6 +19,7 @@ import model.dto.Orders;
 import model.dto.StockInfo;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -101,7 +102,7 @@ public class PlaceOrderFormController implements Initializable {
     }
 
     @FXML
-    void btnPlaceOrderOnAction(ActionEvent event) {
+    void btnPlaceOrderOnAction(ActionEvent event) throws SQLException {
         placeOrderService.placeaorder(new Orders(
                 txtOrderID.getText(),
                 LocalDate.now(),
