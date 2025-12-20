@@ -6,5 +6,5 @@ import java.sql.SQLException;
 
 public interface OrderDetailRepository {
 
-    void addOrderDetail(OrderDetail orderDetail) throws SQLException;
+    boolean addOrderDetail(OrderDetail orderDetail) throws SQLException;
 }

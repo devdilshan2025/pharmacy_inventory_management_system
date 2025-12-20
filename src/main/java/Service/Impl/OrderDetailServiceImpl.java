@@ -14,24 +14,33 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
     OrderDetailRepository orderDetailRepository = new OrderDetailRepositoryImpl();
 
-    public void addOrderDetail(Orders orders, ObservableList<CartItem> cartItems){
+    public boolean addOrderDetail(Orders orders, ObservableList<CartItem> cartItems) {
 
-        for (CartItem cartItem: cartItems) {
+        boolean isAdd = false;
+
+
+        for (CartItem cartItem : cartItems) {
             try {
 
 
-                orderDetailRepository.addOrderDetail(new OrderDetail(
+                isAdd = orderDetailRepository.addOrderDetail(new OrderDetail(
                         orders.getOrderID(),
                         cartItem.getItemCode(),
                         cartItem.getQuantity(),
                         cartItem.getDiscount()
                 ));
 
+                if (isAdd == false) {
+
+                    break;
+                }
+
 
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         }
+        return isAdd;
 
     }
 

@@ -7,12 +7,11 @@ import repository.OrderRepository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
-    public void addOrder(Orders orders) throws SQLException {
+    public boolean addOrder(Orders orders) throws SQLException {
 
         Connection connection = DBConnection.getInstance().getConnection();
         String sql = "INSERT INTO orders VALUES(?,?,?)";
@@ -23,7 +22,7 @@ public class OrderRepositoryImpl implements OrderRepository {
         preparedStatement.setObject(3,orders.getCustomerID());
 
 
-        preparedStatement.executeUpdate();
+        return  preparedStatement.executeUpdate() > 0;
 
     }
 }

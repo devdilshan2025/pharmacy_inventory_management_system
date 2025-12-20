@@ -2,7 +2,6 @@ package repository.Impl;
 
 import db.DBConnection;
 import model.dto.OrderDetail;
-import model.dto.Orders;
 import repository.OrderDetailRepository;
 
 import java.sql.Connection;
@@ -12,7 +11,7 @@ import java.sql.SQLException;
 public class OrderDetailRepositoryImpl implements OrderDetailRepository {
 
     @Override
-    public void addOrderDetail(OrderDetail orderDetail) throws SQLException {
+    public boolean addOrderDetail(OrderDetail orderDetail) throws SQLException {
 
         Connection connection = DBConnection.getInstance().getConnection();
         String sql = "INSERT INTO orderdetail VALUES(?,?,?,?)";
@@ -24,7 +23,7 @@ public class OrderDetailRepositoryImpl implements OrderDetailRepository {
         preparedStatement.setObject(4,orderDetail.getDiscount());
 
 
-        preparedStatement.executeUpdate();
+       return preparedStatement.executeUpdate() > 0;
 
     }
 }

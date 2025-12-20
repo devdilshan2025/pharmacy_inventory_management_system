@@ -6,7 +6,7 @@ import model.dto.Orders;
 
 public interface OrderDetailService {
 
-    void addOrderDetail(Orders orders, ObservableList<CartItem> cartItems);
+    boolean addOrderDetail(Orders orders, ObservableList<CartItem> cartItems);
 
 
 }

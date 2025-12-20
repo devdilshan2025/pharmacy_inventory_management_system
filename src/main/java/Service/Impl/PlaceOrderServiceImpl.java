@@ -36,10 +36,18 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
     public void placeaorder(Orders orders, ObservableList<CartItem> cartItems) {
 
 
-       orderService.addOrder(orders);
+        boolean isAddOrder = orderService.addOrder(orders);
 
-       orderDetailService.addOrderDetail(orders, cartItems);
+        if (isAddOrder){
 
-       stockLoginService.updateItemQuantity(cartItems);
+            boolean isAddOrderDetail = orderDetailService.addOrderDetail(orders, cartItems);
+            if (isAddOrderDetail){
+
+               stockLoginService.updateItemQuantity(cartItems);
+           }
+       }
+
+
+
     }
 }
