@@ -1,4 +1,4 @@
-package Controller.SupplierController;
+package Controller;
 
 import Service.SupplierLoginService;
 import Service.Impl.SupplierLoginServiceImpl;

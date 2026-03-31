@@ -1,4 +1,4 @@
-package Controller.PlaceOrder;
+package Controller;
 
 import Service.PlaceOrderService;
 import Service.Impl.PlaceOrderServiceImpl;

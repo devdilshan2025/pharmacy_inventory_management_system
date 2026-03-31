@@ -1,4 +1,4 @@
-package Controller.StockController;
+package Controller;
 
 import Service.StockLoginService;
 import Service.Impl.StockLoginServiceImpl;
