@@ -3,24 +3,28 @@ package Controller;
 import Service.PlaceOrderService;
 import Service.Impl.PlaceOrderServiceImpl;
 import com.jfoenix.controls.JFXButton;
+import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.dto.CartItem;
 import model.dto.Customer;
 import model.dto.Orders;
 import model.dto.StockInfo;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.view.JasperViewer;
 
+import java.io.InputStream;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class PlaceOrderFormController implements Initializable {
@@ -29,6 +33,9 @@ public class PlaceOrderFormController implements Initializable {
 
     @FXML
     private JFXButton btnAddToCart;
+
+    @FXML
+    private JFXButton btnBillPrint;
 
     @FXML
     private JFXButton btnPlaceOrder;
@@ -117,6 +124,46 @@ public class PlaceOrderFormController implements Initializable {
         StockInfo item = placeOrderService.searchItem(txtItemCode.getText(), null);
         lblItemName.setText(item.getName());
         lblUnitPrice.setText(String.valueOf(item.getPrice()));
+
+    }
+
+    @FXML
+    void btnBillPrintOnAction(ActionEvent event) {
+
+        String orderId = txtOrderID.getText();
+
+        try {
+
+            Connection connection = DBConnection.getInstance().getConnection();
+
+
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("p_orderId", orderId);
+
+
+
+            InputStream reportStream = getClass().getResourceAsStream("/report/PharmacyBill.jrxml");
+
+            if (reportStream == null) {
+                new Alert(Alert.AlertType.ERROR, "Cant find report flie!").show();
+                return;
+            }
+
+            JasperReport jasperReport = JasperCompileManager.compileReport(reportStream);
+
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, connection);
+
+
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (JRException e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Jasper Report එකේ දෝෂයක්: " + e.getMessage()).show();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Database දෝෂයක්: " + e.getMessage()).show();
+        }
 
     }
 
